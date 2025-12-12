@@ -32,7 +32,7 @@ const Resume = () => {
                             boxShadow: 'var(--accent-glow)'
                         }}></div>
                         <h3 style={{ fontSize: '1.5rem', marginBottom: '5px' }}>Intern Software Engineer</h3>
-                        <h4 style={{ fontSize: '1.1rem', color: 'var(--accent-color)', marginBottom: '10px' }}>Amerck. | 2025 April - 2025 November</h4>
+                        <h4 style={{ fontSize: '1.1rem', color: 'var(--accent-color)', marginBottom: '10px' }}>Amerck | 2025 April - 2025 November</h4>
                         <p style={{ color: 'var(--text-secondary)' }}>
                             Experienced in web development with strong skills in QA testing and staging deployments. I also bring solid business analysis expertise and confident client-handling abilities.
                         </p>
