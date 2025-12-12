@@ -5,7 +5,7 @@ const Projects = () => {
         {
             title: 'Digital Marketing Website',
             description: 'A web application built with React and Node.js. Features include user authentication and real-time data.',
-            tools: ['React', 'Node.js', 'MongoDB'],
+            tools: ['React', 'TypeScript', 'Tailwind CSS'],
             link: 'https://dasandco.lovable.app/'
         },
         {

@@ -76,7 +76,7 @@ const Hero = () => {
                     marginLeft: 'auto',
                     marginRight: 'auto'
                 }}>
-                    Creative Developer & Designer building immersive digital experiences.
+                    "Where imagination meets Dev + AI to create immersive digital worlds."
                 </p>
                 <a href="#projects" className="btn btn-primary">
                     View My Work
