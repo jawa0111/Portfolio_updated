@@ -1,5 +1,4 @@
 import React from 'react';
-import { SplineScene } from './ui/spline';
 
 const Hero = () => {
     const heroLines = ["Hello, I'm", 'Jude Jawakker'];
@@ -8,19 +7,18 @@ const Hero = () => {
             minHeight: '100vh',
             position: 'relative',
             overflow: 'hidden',
-            '--blink-animation': 'none',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'center',
             background: 'linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.6) 100%)'
         }}>
-            {/* Left Side - Text Content */}
+            {/* Text Content */}
             <div style={{
-                flex: '1',
                 padding: '2rem',
                 zIndex: 2,
-                maxWidth: '50%',
-                paddingLeft: '10%'
+                maxWidth: '800px',
+                textAlign: 'center'
             }}>
             <style jsx global>{`
                 @keyframes blink {
@@ -80,20 +78,7 @@ const Hero = () => {
                     View My Work
                 </a>
             </div>
-            </div> {/* Close left content div */}
-            
-            {/* Right Side - 3D Robot */}
-            <div style={{
-                flex: '1',
-                height: '100vh',
-                position: 'relative',
-                zIndex: 1
-            }}>
-                <SplineScene 
-                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                    className="w-full h-full"
-                />
-            </div>
+            </div> {/* Close content div */}
         </section>
     );
 };
