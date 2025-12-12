@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { SplineScene } from './ui/spline';
 
 const Hero = () => {
-    const [text, setText] = useState('');
-    const fullText = "Hello, I'm\nJude Jawakker";
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        if (currentIndex < fullText.length) {
-            const timeout = setTimeout(() => {
-                setText(prevText => prevText + fullText[currentIndex]);
-                setCurrentIndex(prevIndex => prevIndex + 1);
-            }, 60); // Slower typing speed (higher value = slower)
-            
-            return () => clearTimeout(timeout);
-        }
-    }, [currentIndex, fullText]);
+    const heroLines = ["Hello, I'm", 'Jude Jawakker'];
     return (
         <section id="home" className="section" style={{
-            height: '100vh',
+            minHeight: '100vh',
+            position: 'relative',
+            overflow: 'hidden',
+            '--blink-animation': 'none',
             display: 'flex',
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            background: 'radial-gradient(circle at center, #1a0005 0%, #000000 70%)',
-            '--blink-animation': currentIndex < fullText.length ? 'blink 1s step-end infinite' : 'none'
+            background: 'linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.6) 100%)'
         }}>
+            {/* Left Side - Text Content */}
+            <div style={{
+                flex: '1',
+                padding: '2rem',
+                zIndex: 2,
+                maxWidth: '50%',
+                paddingLeft: '10%'
+            }}>
             <style jsx global>{`
                 @keyframes blink {
                     from, to { opacity: 1; }
@@ -33,54 +30,69 @@ const Hero = () => {
             `}</style>
             <div className="container">
                 <h1 style={{
-                    fontSize: 'clamp(3rem, 8vw, 6rem)',
+                    fontSize: 'clamp(2.5rem, 7vw, 5rem)',
                     fontWeight: '900',
                     lineHeight: '1.1',
                     marginBottom: '20px',
                     textTransform: 'uppercase'
                 }}>
-                    {text.split('\n').map((line, index) => (
+                    {heroLines.map((line, index) => (
                         <React.Fragment key={index}>
                             {index > 0 && <br />}
-                            {line.includes('Jude Jawakker') ? (
-                                <span style={{
-                                    color: 'transparent',
-                                    WebkitTextStroke: '2px var(--accent-color)',
-                                    textShadow: '0 0 20px rgba(255, 0, 51, 0.5)',
-                                    whiteSpace: 'pre',
-                                    borderRight: currentIndex < fullText.length ? '2px solid var(--accent-color)' : 'none'
-                                }}>
-                                    {line}
-                                </span>
-                            ) : (
-                                <span style={{ whiteSpace: 'pre' }}>{line}</span>
-                            )}
+                            <span style={{
+                                color: 'transparent',
+                                WebkitTextStroke: '2px var(--accent-color)',
+                                textShadow: '0 0 20px rgba(255, 0, 51, 0.5)',
+                                whiteSpace: 'pre'
+                            }}>
+                                {line}
+                            </span>
                         </React.Fragment>
                     ))}
-                    {currentIndex < fullText.length && (
-                        <span style={{
-                            display: 'inline-block',
-                            width: '0.5em',
-                            height: '1.2em',
-                            marginLeft: '2px',
-                            backgroundColor: 'var(--accent-color)',
-                            animation: 'blink 1s step-end infinite'
-                        }} />
-                    )}
                 </h1>
                 <p style={{
                     fontSize: '1.5rem',
                     color: 'var(--text-secondary)',
                     marginBottom: '40px',
                     maxWidth: '600px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
+                    marginLeft: '0',
+                    marginRight: 'auto',
+                    textAlign: 'left'
                 }}>
                     "Where imagination meets Dev + AI to create immersive digital worlds."
                 </p>
-                <a href="#projects" className="btn btn-primary">
+                <a href="#projects" className="btn btn-primary" style={{
+                    display: 'inline-block',
+                    padding: '12px 30px',
+                    backgroundColor: 'var(--accent-color)',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '30px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    transition: 'all 0.3s ease',
+                    marginTop: '20px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    alignSelf: 'flex-start'
+                }}>
                     View My Work
                 </a>
+            </div>
+            </div> {/* Close left content div */}
+            
+            {/* Right Side - 3D Robot */}
+            <div style={{
+                flex: '1',
+                height: '100vh',
+                position: 'relative',
+                zIndex: 1
+            }}>
+                <SplineScene 
+                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    className="w-full h-full"
+                />
             </div>
         </section>
     );
