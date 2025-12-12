@@ -1,82 +1,43 @@
-import React from 'react';
+'use client';
+
+import React, { Suspense, lazy } from 'react';
+import { motion } from 'framer-motion';
+
+// Lazy load the Spline component
+const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const Hero = () => {
-    const heroLines = ["Hello, I'm", 'Jude Jawakker'];
     return (
-        <section id="home" className="section" style={{
-            minHeight: '100vh',
-            position: 'relative',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.6) 100%)'
-        }}>
-            {/* Text Content */}
-            <div style={{
-                padding: '2rem',
-                zIndex: 2,
-                maxWidth: '800px',
-                textAlign: 'center'
-            }}>
-            <style jsx global>{`
-                @keyframes blink {
-                    from, to { opacity: 1; }
-                    50% { opacity: 0; }
-                }
-            `}</style>
-            <div className="container">
-                <h1 style={{
-                    fontSize: 'clamp(2.5rem, 7vw, 5rem)',
-                    fontWeight: '900',
-                    lineHeight: '1.1',
-                    marginBottom: '20px',
-                    textTransform: 'uppercase'
-                }}>
-                    {heroLines.map((line, index) => (
-                        <React.Fragment key={index}>
-                            {index > 0 && <br />}
-                            <span style={{
-                                color: 'transparent',
-                                WebkitTextStroke: '2px var(--accent-color)',
-                                textShadow: '0 0 20px rgba(255, 0, 51, 0.5)',
-                                whiteSpace: 'pre'
-                            }}>
-                                {line}
-                            </span>
-                        </React.Fragment>
-                    ))}
-                </h1>
-                <p style={{
-                    fontSize: '1.5rem',
-                    color: 'var(--text-secondary)',
-                    margin: '0 auto 40px',
-                    maxWidth: '600px',
-                    textAlign: 'center'
-                }}>
-                    "Where imagination meets Dev + AI to create immersive digital worlds."
-                </p>
-                <a href="#projects" className="btn btn-primary" style={{
-                    display: 'inline-block',
-                    padding: '12px 30px',
-                    backgroundColor: 'var(--accent-color)',
-                    color: 'white',
-                    textDecoration: 'none',
-                    borderRadius: '30px',
-                    fontWeight: 'bold',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    transition: 'all 0.3s ease',
-                    marginTop: '20px',
-                    border: 'none',
-                    cursor: 'pointer',
-                    alignSelf: 'flex-start'
-                }}>
-                    View My Work
-                </a>
+        <section 
+            id="home" 
+            className="relative h-screen w-full overflow-hidden bg-gradient-to-r from-black via-black/80 to-black/60"
+        >
+            <div className="h-full w-full flex items-center justify-center">
+                {/* 3D Robot - Full Screen */}
+                <motion.div 
+                    className="relative w-full h-full flex items-center justify-center"
+                    initial={{ opacity: 0, scale: 0.9, x: 50 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+                >
+                    <Suspense fallback={<div className="h-full w-full bg-gray-900/50 rounded-2xl flex items-center justify-center">
+                        <div className="text-gray-400">Loading animation...</div>
+                    </div>}>
+                        <div className="w-full h-full flex items-center justify-center">
+                            <Spline
+                                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                                className="h-full w-full"
+                            />
+                        </div>
+                    </Suspense>
+                </motion.div>
             </div>
-            </div> {/* Close content div */}
+
+            {/* Animated background elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-transparent via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+            </div>
         </section>
     );
 };
