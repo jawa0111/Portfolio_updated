@@ -51,11 +51,9 @@ const Hero = () => {
                 <p style={{
                     fontSize: '1.5rem',
                     color: 'var(--text-secondary)',
-                    marginBottom: '40px',
+                    margin: '0 auto 40px',
                     maxWidth: '600px',
-                    marginLeft: '0',
-                    marginRight: 'auto',
-                    textAlign: 'left'
+                    textAlign: 'center'
                 }}>
                     "Where imagination meets Dev + AI to create immersive digital worlds."
                 </p>
