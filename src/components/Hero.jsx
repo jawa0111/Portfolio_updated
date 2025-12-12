@@ -3,34 +3,44 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Lazy load the Spline component
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const Hero = () => {
     const [webGLAvailable, setWebGLAvailable] = useState(true);
 
     useEffect(() => {
-        // Check WebGL support
         const canvas = document.createElement('canvas');
         const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
         if (!gl) {
+            console.log('WebGL not available, redirecting to about section');
             setWebGLAvailable(false);
-            // Redirect to about section after a short delay
-            const timer = setTimeout(() => {
+            // Smoothly scroll to about section
+            setTimeout(() => {
                 const aboutSection = document.getElementById('about');
                 if (aboutSection) {
                     aboutSection.scrollIntoView({ behavior: 'smooth' });
                 }
             }, 100);
-            return () => clearTimeout(timer);
         }
     }, []);
 
+    const handleSplineError = (error) => {
+        console.error('Spline error:', error);
+        // On error, scroll to about section
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        setWebGLAvailable(false);
+    };
+
+    // If WebGL is not available, return null (no rendering)
     if (!webGLAvailable) {
-        // Return an empty fragment since we're redirecting
-        return <></>;
+        return null;
     }
 
+    // If WebGL is available, show the 3D model immediately
     return (
         <section 
             id="home" 
@@ -43,13 +53,12 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
                 >
-                    <Suspense fallback={<div className="h-full w-full bg-gray-900/50 rounded-2xl flex items-center justify-center">
-                        <div className="text-gray-400">Loading animation...</div>
-                    </div>}>
+                    <Suspense fallback={null}>
                         <div className="w-full h-full flex items-center justify-center">
                             <Spline
                                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                                 className="h-full w-full"
+                                onError={handleSplineError}
                             />
                         </div>
                     </Suspense>
