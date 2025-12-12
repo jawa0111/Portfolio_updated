@@ -114,8 +114,11 @@ const Projects = () => {
                                     <span key={i} style={{
                                         fontSize: '0.8rem',
                                         padding: '5px 10px',
-                                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                                        borderRadius: '20px'
+                                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                                        color: '#0ff',
+                                        borderRadius: '20px',
+                                        boxShadow: '0 0 5px #0ff, 0 0 10px #0ff',
+                                        textShadow: '0 0 5px #0ff'
                                     }}>
                                         {tool}
                                     </span>

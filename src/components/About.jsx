@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 
 const About = () => {
+    const [text, setText] = useState('');
+    const fullText = "Hello, I'm Jude Jawakker";
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [loopNum, setLoopNum] = useState(0);
+    const [typingSpeed, setTypingSpeed] = useState(50);
+
+    useEffect(() => {
+        let timer;
+        const handleTyping = () => {
+            const currentIndex = isDeleting ? text.length - 1 : text.length + 1;
+            const newText = fullText.substring(0, currentIndex);
+            
+            setText(newText);
+            
+            if (!isDeleting && newText === fullText) {
+                // Pause at the end of typing
+                setTimeout(() => setIsDeleting(true), 2000);
+            } else if (isDeleting && newText === '') {
+                setIsDeleting(false);
+                setLoopNum(prevLoopNum => prevLoopNum + 1);
+            }
+            
+            const speed = isDeleting ? 50 : 100;
+            setTypingSpeed(speed);
+        };
+
+        timer = setTimeout(handleTyping, typingSpeed);
+        return () => clearTimeout(timer);
+    }, [text, isDeleting, loopNum, typingSpeed]);
     return (
         <section id="about" className="section" style={{ backgroundColor: 'var(--bg-secondary)' }}>
             <div className="container">
@@ -31,9 +61,27 @@ const About = () => {
                         />
                     </div>
                     <div style={{ flex: '1 1 400px' }}>
-                        <h3 style={{ fontSize: '2rem', marginBottom: '20px' }}>Who I Am</h3>
+                        <h3 style={{ fontSize: '2rem', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', minHeight: '2.5rem' }}>
+                            <span role="img" aria-label="hi" style={{ color: 'var(--accent-color)' }}>👋</span>
+                            <span style={{ color: 'var(--accent-color)' }}>
+                                {text}
+                                <span style={{ opacity: 0.7 }}>|</span>
+                            </span>
+                        </h3>
+                        <blockquote style={{
+                            fontSize: '1.2rem',
+                            fontStyle: 'italic',
+                            color: 'var(--text-secondary)',
+                            borderLeft: '3px solid var(--accent-color)',
+                            paddingLeft: '15px',
+                            margin: '0 0 20px 0',
+                            lineHeight: '1.6',
+                            opacity: 0.9
+                        }}>
+                            "Where imagination meets Dev + AI to create immersive digital worlds."
+                        </blockquote>
                         <p style={{ marginBottom: '20px', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
-                            I am a passionate creative professional dedicated to crafting unique digital solutions.
+                            A passionate creative professional dedicated to crafting unique digital solutions.
                             My journey began with a curiosity for how things work, leading me to master the art of
                             web development and design.
                         </p>
@@ -42,14 +90,7 @@ const About = () => {
                             I am constantly learning new technologies to stay ahead of the curve and deliver
                             the best possible results for my clients.
                         </p>
-                        <div style={{ marginTop: '30px' }}>
-                            <h4 style={{ fontSize: '1.2rem', marginBottom: '10px', color: 'var(--accent-color)' }}>My Goals</h4>
-                            <ul style={{ listStyle: 'none', paddingLeft: '0' }}>
-                                <li style={{ marginBottom: '10px' }}>✓ To create impactful user experiences</li>
-                                <li style={{ marginBottom: '10px' }}>✓ To work with innovative teams</li>
-                                <li style={{ marginBottom: '10px' }}>✓ To continuously grow my skill set</li>
-                            </ul>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
