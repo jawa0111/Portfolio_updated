@@ -65,7 +65,7 @@ const Projects = () => {
                             }}>
                                 {project.title === 'Nirvee Visa & Immigration Experts' ? (
                                     <img 
-                                        src="/src/assets/nirvee.png" 
+                                        src="/nirvee.png" 
                                         alt={project.title}
                                         style={{
                                             width: '100%',
