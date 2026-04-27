@@ -3,6 +3,12 @@ import React from 'react';
 const Projects = () => {
     const projects = [
         {
+            title: 'Nirvee Visa & Immigration Experts',
+            description: 'Professional website for visa and immigration services company built with Astro. Features responsive design, service listings, testimonials, and contact forms.',
+            tools: ['Astro', 'HTML', 'CSS', 'JavaScript'],
+            link: 'https://www.nirveevisa.com/'
+        },
+        {
             title: 'Digital Marketing Website',
             description: 'A web application built with React and Node.js. Features include user authentication and real-time data.',
             tools: ['React', 'TypeScript', 'Tailwind CSS'],
@@ -57,7 +63,18 @@ const Projects = () => {
                                 border: '1px solid #333',
                                 backgroundColor: '#000'
                             }}>
-                                {project.title === 'Digital Marketing Website' ? (
+                                {project.title === 'Nirvee Visa & Immigration Experts' ? (
+                                    <img 
+                                        src="/src/assets/Screenshot 2026-04-27 192327.png" 
+                                        alt={project.title}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover',
+                                            objectPosition: 'center top'
+                                        }}
+                                    />
+                                ) : project.title === 'Digital Marketing Website' ? (
                                     <img 
                                         src="/DIGI.png" 
                                         alt={project.title}
