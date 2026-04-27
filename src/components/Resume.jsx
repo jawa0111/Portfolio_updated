@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Resume = () => {
-    const resumePDF = '/JudeJawakker.pdf';
+    const resumePDF = '/src/components/JudeJawakker_CV.pdf';
     return (
         <section id="resume" className="section">
             <div className="container">
