@@ -15,6 +15,12 @@ const Projects = () => {
             link: 'https://dasandco.lovable.app/'
         },
         {
+            title: 'Job Portal Web App',
+            description: 'Full-stack job portal with separate candidate, recruiter, and admin functionality. Includes auth, job listings, applications, profile management, and admin dashboards.',
+            tools: ['Next.js', 'React', 'TypeScript'],
+            link: 'https://job-portal-web-vert.vercel.app/'
+        },
+        {
             title: 'Online Food Ordering',
             description: 'A web-based platform that allows users to browse menus, customize meals, and place orders seamlessly. ',
             tools: ['React.js', 'Node.js', 'MongoDB'],
@@ -77,6 +83,17 @@ const Projects = () => {
                                 ) : project.title === 'Digital Marketing Website' ? (
                                     <img 
                                         src="/DIGI.png" 
+                                        alt={project.title}
+                                        style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover',
+                                            objectPosition: 'center top'
+                                        }}
+                                    />
+                                ) : project.title === 'Job Portal Web App' ? (
+                                    <img 
+                                        src="/jobportal.png" 
                                         alt={project.title}
                                         style={{
                                             width: '100%',
